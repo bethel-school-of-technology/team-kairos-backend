@@ -6,13 +6,13 @@ using JobPlsApi.Models;
 
 namespace JobPlsApi.Data
 {
-    public partial class JobPlsApiContext : DbContext
+    public partial class AppDbContext : DbContext
     {
-        public JobPlsApiContext()
+        public AppDbContext()
         {
         }
 
-        public JobPlsApiContext(DbContextOptions<JobPlsApiContext> options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
         }

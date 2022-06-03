@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/johnpue/Desktop/KairosTeamProject/JobPlsApi/JobPlsApi.csproj": {}
+    "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {}
   },
   "projects": {
-    "/Users/johnpue/Desktop/KairosTeamProject/JobPlsApi/JobPlsApi.csproj": {
+    "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/johnpue/Desktop/KairosTeamProject/JobPlsApi/JobPlsApi.csproj",
+        "projectUniqueName": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
         "projectName": "JobPlsApi",
-        "projectPath": "/Users/johnpue/Desktop/KairosTeamProject/JobPlsApi/JobPlsApi.csproj",
+        "projectPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
         "packagesPath": "/Users/johnpue/.nuget/packages/",
-        "outputPath": "/Users/johnpue/Desktop/KairosTeamProject/JobPlsApi/obj/",
+        "outputPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/johnpue/.nuget/NuGet/NuGet.Config"
@@ -38,10 +38,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.4, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -52,11 +48,11 @@
               "target": "Package",
               "version": "[6.0.5, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[6.0.5, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.EntityFrameworkCore.Sqlserver": {
               "target": "Package",
               "version": "[6.0.5, )"
             },

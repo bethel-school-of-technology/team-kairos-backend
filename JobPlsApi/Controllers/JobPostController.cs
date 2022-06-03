@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using JobPlsApi.Models;
+using JobPlsApi.Data;
 
 namespace JobPlsApi.Controllers
 {
@@ -13,17 +15,17 @@ namespace JobPlsApi.Controllers
     [ApiController]
     public class JobPostController : ControllerBase
     {
-        private readonly JobPostContext _context;
+        private readonly JobPlsApiContext _context;
 
-        public JobPostController(JobPostContext context)
+        public JobPostController(JobPlsApiContext context)
         {
             _context = context;
         }
 
-// Get list of cars and filter with newest car year first.
+
         // GET: api/JobPost
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<JobPost>>> GetJobPosts(string sortOrder)
+        public async Task<ActionResult<IEnumerable<JobPost>>> GetJobPosts()
         {
              return _context.JobPosts;
         }

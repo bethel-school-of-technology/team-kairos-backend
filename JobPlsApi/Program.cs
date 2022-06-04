@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
+using JobPlsApi.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Connection to Database
-
-builder.Services.AddSqlServer<JobPostContext>("DataSource=app.db");
+builder.Services.AddDbContext<AppDbContext>
+    (options => options.UseSqlite("Name=AppDb"));
     
 
 //Identity 

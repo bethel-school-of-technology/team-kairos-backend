@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using JobPlsApi.Models;
+using JobPlsApi.Data;
 
 namespace JobPlsApi.Controllers
 {
@@ -13,25 +15,32 @@ namespace JobPlsApi.Controllers
     [ApiController]
     public class JobPostController : ControllerBase
     {
-        private readonly JobPostContext _context;
+        private readonly AppDbContext _context;
 
-        public JobPostController(JobPostContext context)
+        public JobPostController(AppDbContext context)
         {
             _context = context;
         }
 
-// Get list of cars and filter with newest car year first.
         // GET: api/JobPost
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<JobPost>>> GetJobPosts(string sortOrder)
+        public async Task<ActionResult<IEnumerable<JobPost>>> GetJobPosts()
         {
-             return _context.JobPosts;
+          if (_context.JobPosts == null)
+          {
+              return NotFound();
+          }
+            return await _context.JobPosts.ToListAsync();
         }
 
         // GET: api/JobPost/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<JobPost>> GetJobPost(int id)
+        public async Task<ActionResult<JobPost>> GetJobPost(long id)
         {
+          if (_context.JobPosts == null)
+          {
+              return NotFound();
+          }
             var jobPost = await _context.JobPosts.FindAsync(id);
 
             if (jobPost == null)
@@ -45,7 +54,7 @@ namespace JobPlsApi.Controllers
         // PUT: api/JobPost/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutJobPost(int id, JobPost jobPost)
+        public async Task<IActionResult> PutJobPost(long id, JobPost jobPost)
         {
             if (id != jobPost.Id)
             {
@@ -78,6 +87,10 @@ namespace JobPlsApi.Controllers
         [HttpPost]
         public async Task<ActionResult<JobPost>> PostJobPost(JobPost jobPost)
         {
+          if (_context.JobPosts == null)
+          {
+              return Problem("Entity set 'AppDbContext.JobPosts'  is null.");
+          }
             _context.JobPosts.Add(jobPost);
             await _context.SaveChangesAsync();
 
@@ -86,8 +99,12 @@ namespace JobPlsApi.Controllers
 
         // DELETE: api/JobPost/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteJobPost(int id)
+        public async Task<IActionResult> DeleteJobPost(long id)
         {
+            if (_context.JobPosts == null)
+            {
+                return NotFound();
+            }
             var jobPost = await _context.JobPosts.FindAsync(id);
             if (jobPost == null)
             {
@@ -100,9 +117,9 @@ namespace JobPlsApi.Controllers
             return NoContent();
         }
 
-        private bool JobPostExists(int id)
+        private bool JobPostExists(long id)
         {
-            return _context.JobPosts.Any(e => e.Id == id);
+            return (_context.JobPosts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ebpQygYwKAwRdatDR+9ckKAQj3luX7mdeU3CUn8+hqg=",
+  "Source": "JobPlsApi",
+  "BasePath": "_content/JobPlsApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {}
+    "C:\\Users\\mario_000\\Desktop\\team-kairos-backend\\JobPlsApi\\JobPlsApi.csproj": {}
   },
   "projects": {
-    "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {
+    "C:\\Users\\mario_000\\Desktop\\team-kairos-backend\\JobPlsApi\\JobPlsApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+        "projectUniqueName": "C:\\Users\\mario_000\\Desktop\\team-kairos-backend\\JobPlsApi\\JobPlsApi.csproj",
         "projectName": "JobPlsApi",
-        "projectPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
-        "packagesPath": "/Users/johnpue/.nuget/packages/",
-        "outputPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/obj/",
+        "projectPath": "C:\\Users\\mario_000\\Desktop\\team-kairos-backend\\JobPlsApi\\JobPlsApi.csproj",
+        "packagesPath": "C:\\Users\\mario_000\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mario_000\\Desktop\\team-kairos-backend\\JobPlsApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/johnpue/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\mario_000\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -89,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

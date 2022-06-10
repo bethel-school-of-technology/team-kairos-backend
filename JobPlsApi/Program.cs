@@ -1,3 +1,6 @@
+using JobPlsApi.Interface;
+using JobPlsApi.Models;
+using JobPlsApi.Repository;
 using Microsoft.AspNetCore.Identity;
 using JobPlsApi.Data;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Connection to Database
 builder.Services.AddDbContext<AppDbContext>
     (options => options.UseSqlite("Name=AppDb"));
-    
+builder.Services.AddTransient<IJobseeker, JobseekerRepository>();
 
 //Identity 
 builder.Services.Configure<IdentityOptions>(options =>

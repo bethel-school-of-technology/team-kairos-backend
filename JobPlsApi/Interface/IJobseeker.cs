@@ -1,11 +1,11 @@
 using JobPlsApi.Models;
 
-public interface IEmployees
+public interface IJobseeker
     {
-        public List<JobseekerInfo> GetEmployeeDetails();
-        public JobseekerInfo GetEmployeeDetails(int id);
-        public void AddEmployee(JobseekerInfo employee);
-        public void UpdateEmployee(JobseekerInfo employee);
-        public JobseekerInfo DeleteEmployee(int id);
-        public bool CheckEmployee(int id);
+        public List<JobseekerInfo> GetJobseekerDetails();
+        public JobseekerInfo GetJobseekerDetails(int id);
+        public void AddJobseeker(JobseekerInfo employee);
+        public void UpdateJobseeker(JobseekerInfo employee);
+        public JobseekerInfo DeleteJobseeker(int id);
+        public bool CheckJobseeker(int id);
     }

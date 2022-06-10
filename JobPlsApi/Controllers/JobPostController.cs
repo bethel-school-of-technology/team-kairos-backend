@@ -15,9 +15,9 @@ namespace JobPlsApi.Controllers
     [ApiController]
     public class JobPostController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly JobPostContext _context;
 
-        public JobPostController(AppDbContext context)
+        public JobPostController(JobPostContext context)
         {
             _context = context;
         }

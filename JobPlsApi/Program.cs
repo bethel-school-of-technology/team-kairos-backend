@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Connection to Database
-builder.Services.AddDbContext<AppDbContext>
+builder.Services.AddDbContext<JobPostContext>
     (options => options.UseSqlite("Name=AppDb"));
     
 

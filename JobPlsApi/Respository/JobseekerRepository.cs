@@ -2,8 +2,9 @@ using JobPlsApi.Interface;
 using JobPlsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
+namespace JobPlsApi.Repository {
 
-    public class JobseekerRepository : IJobseeker
+    public class JobseekerRepository : IJobseekers
     {
         readonly DatabaseContext _dbContext = new();
 
@@ -16,7 +17,7 @@ using Microsoft.EntityFrameworkCore;
         {
             try
             {
-                return _dbContext.jobseeker.ToList();
+                return _dbContext.JobseekerInfo.ToList();
             }
             catch
             {
@@ -28,7 +29,7 @@ using Microsoft.EntityFrameworkCore;
         {
             try
             {
-                JobseekerInfo? jobseeker = _dbContext.Jobseeker.Find(id);
+                JobseekerInfo? jobseeker = _dbContext.JobseekerInfo.Find(id);
                 if (jobseeker != null)
                 {
                     return jobseeker;
@@ -48,7 +49,7 @@ using Microsoft.EntityFrameworkCore;
         {
             try
             {
-                _dbContext.Jobseeker.Add(jobseeker);
+                _dbContext.JobseekerInfo.Add(jobseeker);
                 _dbContext.SaveChanges();
             }
             catch
@@ -57,7 +58,7 @@ using Microsoft.EntityFrameworkCore;
             }
         }
 
-        public void UpdateEmployee(JobseekerInfo jobseeker)
+        public void UpdateJobseeker(JobseekerInfo jobseeker)
         {
             try
             {
@@ -74,11 +75,11 @@ using Microsoft.EntityFrameworkCore;
         {
             try
             {
-                JobseekerInfo? jobseeker = _dbContext.jobseeker.Find(id);
+                JobseekerInfo? jobseeker = _dbContext.JobseekerInfo.Find(id);
 
                 if (jobseeker != null)
                 {
-                    _dbContext.jobseeker.Remove(jobseeker);
+                    _dbContext.JobseekerInfo.Remove(jobseeker);
                     _dbContext.SaveChanges();
                     return jobseeker;
                 }
@@ -95,7 +96,8 @@ using Microsoft.EntityFrameworkCore;
 
         public bool CheckJobseeker(int id)
         {
-            return _dbContext.jobseeker.Any(e => e.EmployeeID == id);
+            return _dbContext.JobseekerInfo.Any(e => e.UserId == id);
         }
     }
 
+}

@@ -568,3 +568,4 @@ C:\Users\mario_000\Desktop\team-kairos-backend\JobPlsApi\obj\Debug\net6.0\JobPls
 C:\Users\mario_000\Desktop\team-kairos-backend\JobPlsApi\obj\Debug\net6.0\ref\JobPlsApi.dll
 C:\Users\mario_000\Desktop\team-kairos-backend\JobPlsApi\obj\Debug\net6.0\JobPlsApi.pdb
 C:\Users\mario_000\Desktop\team-kairos-backend\JobPlsApi\obj\Debug\net6.0\JobPlsApi.genruntimeconfig.cache
+C:\Users\mario_000\Desktop\team-kairos-backend\JobPlsApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

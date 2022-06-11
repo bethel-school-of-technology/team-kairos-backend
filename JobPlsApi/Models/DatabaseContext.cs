@@ -32,7 +32,7 @@ using Microsoft.EntityFrameworkCore;
             modelBuilder.Entity<JobseekerInfo>(entity =>
             {
                 entity.ToTable("JobseekerInfo");
-                entity.Property(e => e.EmployeeID).HasColumnName("EmployeeID");
+                entity.Property(e => e.UserId).HasColumnName("UserId");
                 entity.Property(e => e.DisplayName).HasMaxLength(60).IsUnicode(false);
                 entity.Property(e => e.UserName).HasMaxLength(30).IsUnicode(false);
                 entity.Property(e => e.Email).HasMaxLength(50).IsUnicode(false);

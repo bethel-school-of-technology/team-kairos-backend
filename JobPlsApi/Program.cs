@@ -11,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Connection to Database
 builder.Services.AddDbContext<AppDbContext>
     (options => options.UseSqlite("Name=AppDb"));
-builder.Services.AddTransient<IJobseeker, JobseekerRepository>();
+builder.Services.AddDbContext<DatabaseContext>
+    (options => options.UseSqlite("Name=AppDb"));
+
+builder.Services.AddTransient<IJobseekers, JobseekerRepository>();
 
 //Identity 
 builder.Services.Configure<IdentityOptions>(options =>

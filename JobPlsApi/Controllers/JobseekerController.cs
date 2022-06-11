@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
+namespace JobPlsApi.Controllers {
     [Route("api/jobseeker")]
     [ApiController]
     public class JobseekerController : ControllerBase
     {
-        private readonly IJobseeker _IJobseeker;
+        private readonly IJobseekers _IJobseeker;
 
-        public JobseekerInfoController(IJobseeker IJobseeker)
+        public JobseekerController(IJobseekers IJobseeker)
         {
             _IJobseeker = IJobseeker;
         }
@@ -27,33 +27,33 @@ using Microsoft.EntityFrameworkCore;
         [HttpGet("{id}")]
         public async Task<ActionResult<JobseekerInfo>> Get(int id)
         {
-            var JobseekerInfos = await Task.FromResult(_IJobseeker.GetJobseekerInfoDetails(id));
-            if (JobseekerInfos == null)
+            var Jobseekers = await Task.FromResult(_IJobseeker.GetJobseekerDetails(id));
+            if (Jobseekers == null)
             {
                 return NotFound();
             }
-            return JobseekerInfos;
+            return Jobseekers;
         }
 
         // POST api/JobseekerInfo
         [HttpPost]
-        public async Task<ActionResult<JobseekerInfo>> Post(JobseekerInfo JobseekerInfo)
+        public async Task<ActionResult<JobseekerInfo>> Post(JobseekerInfo Jobseeker)
         {
-            _IJobseeker.AddJobseekerInfo(JobseekerInfo);
-            return await Task.FromResult(JobseekerInfo);
+            _IJobseeker.AddJobseeker(Jobseeker);
+            return await Task.FromResult(Jobseeker);
         }
 
         // PUT api/JobseekerInfo/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<JobseekerInfo>> Put(int id, JobseekerInfo JobseekerInfo)
+        public async Task<ActionResult<JobseekerInfo>> Put(int id, JobseekerInfo Jobseeker)
         {
-            if (id != JobseekerInfo.JobseekerInfoID)
+            if (id != Jobseeker.UserId)
             {
                 return BadRequest();
             }
             try
             {
-                _IJobseeker.UpdateJobseekerInfo(JobseekerInfo);
+                _IJobseeker.UpdateJobseeker(Jobseeker);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -66,19 +66,20 @@ using Microsoft.EntityFrameworkCore;
                     throw;
                 }
             }
-            return await Task.FromResult(JobseekerInfo);
+            return await Task.FromResult(Jobseeker);
         }
 
         // DELETE api/JobseekerInfo/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<JobseekerInfo>> Delete(int id)
         {
-            var JobseekerInfo = _IJobseeker.DeleteJobseekerInfo(id);
-            return await Task.FromResult(JobseekerInfo);
+            var Jobseeker = _IJobseeker.DeleteJobseeker(id);
+            return await Task.FromResult(Jobseeker);
         }
 
         private bool JobseekerInfoExists(int id)
         {
-            return _IJobseeker.CheckJobseekerInfo(id);
+            return _IJobseeker.CheckJobseeker(id);
         }
     }
+}

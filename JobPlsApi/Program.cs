@@ -1,3 +1,6 @@
+using JobPlsApi.Interface;
+using JobPlsApi.Models;
+using JobPlsApi.Repository;
 using Microsoft.AspNetCore.Identity;
 using JobPlsApi.Data;
 using Microsoft.EntityFrameworkCore;

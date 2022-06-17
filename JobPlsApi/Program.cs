@@ -1,57 +1,102 @@
-using Microsoft.AspNetCore.Identity;
+// using Microsoft.AspNetCore.Identity;
+// using JobPlsApi.Data;
+// using Microsoft.EntityFrameworkCore;
+// using JobPlsApi.Helpers;
+// using JobPlsApi.Services;
+
+// var builder = WebApplication.CreateBuilder(args);
+
+// // Add services to the container.
+
+// var services = builder.Services;
+// services.AddCors();
+// services.AddControllers();
+
+// // configure strongly typed settings object
+// services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
+// // configure DI for application services
+// services.AddScoped<IUserService, UserService>();
+
+// // Connection to Database
+// services.AddDbContext<AppDbContext>
+//     (options => options.UseSqlite("Name=AppDb"));
+
+
+
+// services.AddControllers();
+// // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// services.AddEndpointsApiExplorer();
+// services.AddSwaggerGen();
+
+// var app = builder.Build();
+
+
+// // global cors policy
+// app.UseCors(x => x
+//     .AllowAnyOrigin()
+//     .AllowAnyMethod()
+//     .AllowAnyHeader());
+
+// // custom jwt auth middleware
+// app.UseMiddleware<JwtMiddleware>();
+
+
+// // Configure the HTTP request pipeline.
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
+
+
+
+
+// app.MapControllers();
+
+// app.Run();
+
+
+
 using JobPlsApi.Data;
+using JobPlsApi.Helpers;
+using JobPlsApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Connection to Database
-builder.Services.AddDbContext<AppDbContext>
+// add services to DI container
+{
+    var services = builder.Services;
+
+    // Connection to Database
+services.AddDbContext<AppDbContext>
     (options => options.UseSqlite("Name=AppDb"));
-    
 
-//Identity 
-builder.Services.Configure<IdentityOptions>(options =>
-    {
-        // Password settings
-        options.Password.RequireDigit = false;
-        options.Password.RequiredLength = 8;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequireLowercase = false;
-        options.Password.RequiredUniqueChars = 6;
+    services.AddCors();
+    services.AddControllers();
 
-        // Lockout settings
-        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-        options.Lockout.MaxFailedAccessAttempts = 10;
-        options.Lockout.AllowedForNewUsers = true;
+    // configure strongly typed settings object
+    services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
-        // User settings
-        options.User.RequireUniqueEmail = true;
-    });
-
-
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    // configure DI for application services
+    services.AddScoped<IUserService, UserService>();
+}
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// configure HTTP request pipeline
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // global cors policy
+    app.UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+
+    // custom jwt auth middleware
+    app.UseMiddleware<JwtMiddleware>();
+
+    app.MapControllers();
 }
-
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();

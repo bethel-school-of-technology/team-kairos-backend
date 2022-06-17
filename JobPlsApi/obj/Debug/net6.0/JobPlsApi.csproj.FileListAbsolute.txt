@@ -568,3 +568,6 @@
 /Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/obj/Debug/net6.0/JobPlsApi.pdb
 /Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/obj/Debug/net6.0/JobPlsApi.genruntimeconfig.cache
 /Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/obj/Debug/net6.0/ref/JobPlsApi.dll
+/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/omnisharp.json
+/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/Microsoft.IdentityModel.Abstractions.dll

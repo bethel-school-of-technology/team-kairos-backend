@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {}
+    "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {}
   },
   "projects": {
-    "/Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {
+    "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+        "projectUniqueName": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
         "projectName": "JobPlsApi",
-        "projectPath": "/Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+        "projectPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
         "packagesPath": "/Users/johnpue/.nuget/packages/",
-        "outputPath": "/Users/johnpue/Desktop/test/team-kairos-backend/JobPlsApi/obj/",
+        "outputPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/johnpue/.nuget/NuGet/NuGet.Config"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -69,6 +73,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.19.0, )"
             }
           },
           "imports": [

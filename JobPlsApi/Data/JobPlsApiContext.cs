@@ -19,12 +19,18 @@ namespace JobPlsApi.Data
         }
 
         public virtual DbSet<JobPost> JobPosts { get; set; } = null!;
+         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<JobPost>(entity =>
             {
                 entity.ToTable("JobPost");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User");
             });
 
             OnModelCreatingPartial(modelBuilder);

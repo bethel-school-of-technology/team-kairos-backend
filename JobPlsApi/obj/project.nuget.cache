@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SmmpSM/XbF5qBSgvO6fPLgnxqrMRERW4NtsDKRQeWDAcys0tlU0nX1mKY845feAi0D+9Y3p771c9bk9rlwDaJQ==",
+  "dgSpecHash": "op0TwH27y6qShPdka9QLGgHq9SPujvR6ITSahKt7xG+e9mzKFsOPIO++50z2cNaXyv1xBRSTZ52N8egKjUW0LA==",
   "success": true,
-  "projectFilePath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+  "projectFilePath": "/Users/johnpue/Desktop/projects/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
   "expectedPackageFiles": [
     "/Users/johnpue/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/johnpue/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",

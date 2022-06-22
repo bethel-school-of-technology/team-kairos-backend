@@ -21,12 +21,14 @@ namespace WebApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<JobPost>(entity =>
-            {
-                entity.ToTable("JobPost");
-            });
-
+            
             OnModelCreatingPartial(modelBuilder);
+            
+            modelBuilder.Entity<JobPost>()
+            .HasOne(c => c.user)
+            .WithMany(t => t.JobPosts);
+
+            
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

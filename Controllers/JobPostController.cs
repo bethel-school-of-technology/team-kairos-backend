@@ -97,6 +97,7 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetJobPost", new { id = jobPost.Id }, jobPost);
         }
 
+        
         // DELETE: api/JobPost/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteJobPost(long id)

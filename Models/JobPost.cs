@@ -13,5 +13,6 @@ namespace WebApi.Models
         public string URLToJobApp { get; set; }
         public long MinPayRange { get; set; }
         public long? MaxPayRange { get; set; }
+        public Recruiter user {get; set;}
     }
 }

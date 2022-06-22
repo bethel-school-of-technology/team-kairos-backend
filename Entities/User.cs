@@ -1,7 +1,7 @@
 namespace WebApi.Entities;
 
 using System.Text.Json.Serialization;
-
+using WebApi.Models;
 public class User
 {
     public int Id { get; set; }
@@ -11,4 +11,9 @@ public class User
 
     [JsonIgnore]
     public string Password { get; set; }
+    public Recruiter user {get; set;}
+
+    public bool IsRecruiter {get; set;}
+
+    
 }

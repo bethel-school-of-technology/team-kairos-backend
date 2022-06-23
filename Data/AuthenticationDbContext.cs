@@ -19,7 +19,7 @@ namespace WebApi.Models {
         {
         }
 
-        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<User> User { get; set; } = null!;
 
 protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

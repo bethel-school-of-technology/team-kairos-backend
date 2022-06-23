@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using JobPlsApi.Models;
 using JobPlsApi.Data;
 
@@ -122,4 +117,5 @@ namespace JobPlsApi.Controllers
             return (_context.JobPosts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
+
 }

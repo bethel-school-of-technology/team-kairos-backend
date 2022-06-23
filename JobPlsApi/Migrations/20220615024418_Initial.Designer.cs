@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobPlsApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220611051916_Initial")]
+    [Migration("20220615024418_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

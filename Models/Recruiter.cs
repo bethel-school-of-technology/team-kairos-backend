@@ -13,7 +13,7 @@ namespace WebApi.Models
         public string jobTitle { get; set; }
         // public string email { get; set; }
 
-        public IEnumerable<JobPost> JobPosts {get; set; }
+        public IEnumerable<JobPost>? JobPosts {get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-namespace JobPlsApi.Models;
+namespace JobPlsApi.Models.Users;
 
 using JobPlsApi.Entities;
 
@@ -10,13 +10,4 @@ public class AuthenticateResponse
     public string Username { get; set; }
     public string Token { get; set; }
 
-
-    public AuthenticateResponse(User user, string token)
-    {
-        Id = user.Id;
-        FirstName = user.FirstName;
-        LastName = user.LastName;
-        Username = user.Username;
-        Token = token;
-    }
 }

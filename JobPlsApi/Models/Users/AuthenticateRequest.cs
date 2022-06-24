@@ -1,4 +1,4 @@
-namespace JobPlsApi.Models;
+namespace JobPlsApi.Models.Users;
 
 using System.ComponentModel.DataAnnotations;
 

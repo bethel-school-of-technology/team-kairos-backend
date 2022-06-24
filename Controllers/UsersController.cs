@@ -23,7 +23,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("authenticate")]
-    public async Task<IActionResult> Authenticate(User AuthUser, AuthenticateRequest model)
+    public async Task<IActionResult> Authenticate([FromBody] User AuthUser, [FromRoute] AuthenticateRequest model)
     {
         var response = _userService.Authenticate(AuthUser, model);
 

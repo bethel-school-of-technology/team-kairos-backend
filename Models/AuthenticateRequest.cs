@@ -2,7 +2,7 @@ namespace WebApi.Models;
 
 using System.ComponentModel.DataAnnotations;
 
-public class AuthenticateRequest
+public class AuthenticateRequest 
 {
     [Required]
     public string Username { get; set; }

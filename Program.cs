@@ -21,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddScoped<IUserService, UserService>();
 }
     builder.Services.AddSqlite<AppDbContext>("Data Source=AppDb.db");
-    builder.Services.AddSqlite<AuthenticationDbContext>("Data Source=AuthDb.db");
+    builder.Services.AddSqlite<AuthenticationDbContext>("Data Source=AppDb.db");
 
 var app = builder.Build();
 

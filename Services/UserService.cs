@@ -1,5 +1,6 @@
 namespace WebApi.Services;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,8 +12,8 @@ using WebApi.Models;
 using System.Linq;
 public interface IUserService
 {
-    AuthenticateResponse Authenticate(AuthenticateRequest model);
-    IEnumerable<User> GetAll();
+    Task<AuthenticateResponse> Authenticate(User AuthUser, AuthenticateRequest model);
+    Task<ActionResult<IEnumerable<User>>> GetAll();
     User GetById(int id);
 }
 
@@ -23,7 +24,7 @@ public class UserService : IUserService
       {
         new User { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" }
       };
-    // private readonly AuthenticationDbContext _context;
+    private readonly AuthenticationDbContext _context;
     private readonly AppSettings _appSettings;
 
     // AuthenticationDbContext context
@@ -33,22 +34,27 @@ public class UserService : IUserService
         _appSettings = appSettings.Value;
     }
 
-    public AuthenticateResponse Authenticate(AuthenticateRequest model)
-    {
-        var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+    public async Task<AuthenticateResponse> Authenticate(User AuthUser, AuthenticateRequest model)
+        {
+        if (_context.User == null)
+          {
+              return null;
+          }
+            var user = await _context.User.FindAsync(AuthUser.Id);
 
-        // return null if user not found
-        if (user == null) return null;
 
         // authentication successful so generate jwt token
         var token = generateJwtToken(user);
 
         return new AuthenticateResponse(user, token);
     }
-
-    public IEnumerable<User> GetAll()
+    public async Task<ActionResult<IEnumerable<User>>> GetAll()
     {
-        return _users;
+        // return _users;
+       var users = await _context.User.ToListAsync();
+
+       return users;
+
     }
 
     public User GetById(int id)

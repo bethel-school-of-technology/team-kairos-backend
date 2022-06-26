@@ -1150,3 +1150,6 @@
 /Users/johnpue/Desktop/Comparte/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/AutoMapper.dll
 /Users/johnpue/Desktop/Comparte/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /Users/johnpue/Desktop/Comparte/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/BCrypt.Net-Next.dll
+/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/AutoMapper.dll
+/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/bin/Debug/net6.0/BCrypt.Net-Next.dll

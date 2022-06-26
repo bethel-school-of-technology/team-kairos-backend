@@ -7,6 +7,7 @@ using JobPlsApi.Authorization;
 using JobPlsApi.Helpers;
 using JobPlsApi.Models.Users;
 using JobPlsApi.Services;
+using JobPlsApi.Entities;
 
 [Authorize]
 [ApiController]
@@ -43,6 +44,7 @@ public class UsersController : ControllerBase
         return Ok(new { message = "Registration successful" });
     }
 
+    [Authorize(Role.Recruiter)]
     [HttpGet]
     public IActionResult GetAll()
     {
@@ -50,9 +52,13 @@ public class UsersController : ControllerBase
         return Ok(users);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public IActionResult GetById(int id)
     {
+        var currentUser = (User)HttpContext.Items["User"];
+        if (id != currentUser.Id && currentUser.Role != Role.Recruiter)
+            return Unauthorized(new { message = "Unauthorized" });
+
         var user = _userService.GetById(id);
         return Ok(user);
     }

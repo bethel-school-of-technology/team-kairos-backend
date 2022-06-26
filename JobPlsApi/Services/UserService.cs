@@ -5,9 +5,8 @@ using BCrypt.Net;
 using JobPlsApi.Entities;
 using JobPlsApi.Models.Users;
 using JobPlsApi.Authorization;
-using JobPlsApi.Entities;
 using JobPlsApi.Helpers;
-using JobPlsApi.Models.Users;
+using Microsoft.Extensions.Options;
 
 public interface IUserService
 {
@@ -24,15 +23,18 @@ public class UserService : IUserService
     private DataContext _context;
     private IJwtUtils _jwtUtils;
     private readonly IMapper _mapper;
+    private readonly AppSettings _appSettings;
 
     public UserService(
         DataContext context,
         IJwtUtils jwtUtils,
-        IMapper mapper)
+        IMapper mapper,
+        IOptions<AppSettings> appSettings)
     {
         _context = context;
         _jwtUtils = jwtUtils;
         _mapper = mapper;
+        _appSettings = appSettings.Value;
     }
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
@@ -54,9 +56,11 @@ public class UserService : IUserService
         return _context.Users;
     }
 
-    public User GetById(int id)
+    public User GetById(int id) 
     {
-        return getUser(id);
+        var user = _context.Users.Find(id);
+        if (user == null) throw new KeyNotFoundException("User not found");
+        return user;
     }
 
     public void Register(RegisterRequest model)

@@ -6,7 +6,7 @@ using JobPlsApi.Entities;
 public class DataContext : DbContext
 {
     protected readonly IConfiguration Configuration;
-
+    public DbSet<User> Users { get; set; }
     public DataContext(IConfiguration configuration)
     {
         Configuration = configuration;
@@ -18,5 +18,5 @@ public class DataContext : DbContext
         options.UseSqlServer(Configuration.GetConnectionString("AppDb"));
     }
 
-    public DbSet<User> Users { get; set; }
+
 }

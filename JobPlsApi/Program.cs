@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using JobPlsApi.Authorization;
 using JobPlsApi.Helpers;
 using JobPlsApi.Services;
+using System.Text.Json.Serialization;
+using JobPlsApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 
     services.AddDbContext<DataContext, SqliteDataContext>();
+    builder.Services.AddDbContext<AppDbContext>
+    (options => options.UseSqlite("Name=AppDb"));
 
     services.AddCors();
-    services.AddControllers();
+    services.AddControllers().AddJsonOptions(x =>
+    {
+        // serialize enums as strings in api responses (e.g. Role)
+        x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
     // configure automapper with all automapper profiles from this assembly
     services.AddAutoMapper(typeof(Program));

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JobPlsApi.Entities;
 
 namespace JobPlsApi.Models
 {
@@ -13,5 +14,6 @@ namespace JobPlsApi.Models
         public string? URLToJobApp { get; set; }
         public long MinPayRange { get; set; }
         public long? MaxPayRange { get; set; }
+        public User? User {  get; set; }
     }
 }

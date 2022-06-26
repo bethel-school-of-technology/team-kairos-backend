@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JobPlsApi.Models;
 using JobPlsApi.Data;
+using JobPlsApi.Authorization;
+using JobPlsApi.Entities;
 
 namespace JobPlsApi.Controllers
 {
@@ -93,6 +95,7 @@ namespace JobPlsApi.Controllers
         }
 
         // DELETE: api/JobPost/5
+        [Authorize(Role.Recruiter)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteJobPost(long id)
         {

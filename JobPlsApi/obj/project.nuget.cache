@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EEq0tP13FYNRCbI4qLQFpXPl4Syesb+NSMUGERPHsQHpucDmho0+oUaFv1fksjqBKF95jxT8qDHOa4VjJ2FYtw==",
+  "dgSpecHash": "zIQtb+MFhtX2wODtSi14ZO0D/+ATvcK44WWZJMROxJgD7s42zzHVE7lS/q99V6iKKMcQGLaU/+HFLIOWa6tcjQ==",
   "success": true,
-  "projectFilePath": "/Users/johnpue/Desktop/Comparte/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+  "projectFilePath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
   "expectedPackageFiles": [
     "/Users/johnpue/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/johnpue/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

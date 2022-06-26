@@ -10262,11 +10262,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/johnpue/Desktop/Comparte/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+      "projectUniqueName": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
       "projectName": "JobPlsApi",
-      "projectPath": "/Users/johnpue/Desktop/Comparte/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+      "projectPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
       "packagesPath": "/Users/johnpue/.nuget/packages/",
-      "outputPath": "/Users/johnpue/Desktop/Comparte/team-kairos-backend/JobPlsApi/obj/",
+      "outputPath": "/Users/johnpue/Desktop/team-kairos-backend/JobPlsApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/johnpue/.nuget/NuGet/NuGet.Config"

@@ -20,7 +20,6 @@ namespace JobPlsApi.Controllers
         }
 
         // GET: api/JobPost
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JobPost>>> GetJobPosts()
         {
@@ -51,6 +50,7 @@ namespace JobPlsApi.Controllers
 
         // PUT: api/JobPost/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Role.Recruiter)]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutJobPost(long id, JobPost jobPost)
         {

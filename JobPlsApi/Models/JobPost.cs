@@ -14,6 +14,5 @@ namespace JobPlsApi.Models
         public string? URLToJobApp { get; set; }
         public long MinPayRange { get; set; }
         public long? MaxPayRange { get; set; }
-        public User? User {  get; set; }
     }
 }

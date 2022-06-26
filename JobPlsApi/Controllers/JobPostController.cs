@@ -20,6 +20,7 @@ namespace JobPlsApi.Controllers
         }
 
         // GET: api/JobPost
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JobPost>>> GetJobPosts()
         {

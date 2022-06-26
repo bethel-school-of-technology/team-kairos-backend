@@ -62,7 +62,7 @@ public class UsersController : ControllerBase
         var user = _userService.GetById(id);
         return Ok(user);
     }
-
+    [Authorize(Role.Recruiter)]
     [HttpPut("{id}")]
     public IActionResult Update(int id, UpdateRequest model)
     {
@@ -70,6 +70,7 @@ public class UsersController : ControllerBase
         return Ok(new { message = "User updated successfully" });
     }
 
+    [Authorize(Role.Recruiter)]
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

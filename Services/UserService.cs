@@ -10,6 +10,7 @@ using WebApi.Entities;
 using WebApi.Helpers;
 using WebApi.Models;
 using System.Linq;
+using WebApi.Authorization;
 public interface IUserService
 {
     Task<AuthenticateResponse> Authenticate(User AuthUser, AuthenticateRequest model);
@@ -26,16 +27,19 @@ public class UserService : IUserService
       };
     private readonly AuthenticationDbContext _context;
     private readonly AppSettings _appSettings;
+    
+    private IJwtUtils _jwtUtils;
 
     // AuthenticationDbContext context
-    public UserService(IOptions<AppSettings> appSettings)
+    public UserService(AuthenticationDbContext context, IOptions<AppSettings> appSettings)
     {
-        // _context = context;
+        _context = context;
         _appSettings = appSettings.Value;
     }
 
     public async Task<AuthenticateResponse> Authenticate(User AuthUser, AuthenticateRequest model)
         {
+            
         if (_context.User == null)
           {
               return null;
@@ -44,9 +48,9 @@ public class UserService : IUserService
 
 
         // authentication successful so generate jwt token
-        var token = generateJwtToken(user);
+        var jwtToken = _jwtUtils.GenerateJwtToken(user);
 
-        return new AuthenticateResponse(user, token);
+        return new AuthenticateResponse(user, jwtToken);
     }
     public async Task<ActionResult<IEnumerable<User>>> GetAll()
     {
@@ -64,18 +68,18 @@ public class UserService : IUserService
 
     // helper methods
 
-    private string generateJwtToken(User user)
-    {
-        // generate token that is valid for 7 days
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-            Expires = DateTime.UtcNow.AddDays(7),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
-    }
+    // private string generateJwtToken(User user)
+    // {
+    //     // generate token that is valid for 7 days
+    //     var tokenHandler = new JwtSecurityTokenHandler();
+    //     var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+    //     var tokenDescriptor = new SecurityTokenDescriptor
+    //     {
+    //         Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+    //         Expires = DateTime.UtcNow.AddDays(7),
+    //         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+    //     };
+    //     var token = tokenHandler.CreateToken(tokenDescriptor);
+    //     return tokenHandler.WriteToken(token);
+    // }
 }

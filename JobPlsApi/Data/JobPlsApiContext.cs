@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using JobPlsApi.Models;
+using JobPlsApi.Entities;
 
 namespace JobPlsApi.Data
 {

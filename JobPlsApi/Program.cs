@@ -68,5 +68,5 @@ if (app.Environment.IsDevelopment())
 
     app.MapControllers();
 }
-
-app.Run("http://localhost:4000");
+app.Run();
+// "http://localhost:4000;https://localhost:7172"

@@ -50,7 +50,7 @@ namespace JobPlsApi.Controllers
 
         // PUT: api/JobPost/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize(Role.Recruiter)]
+        // [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutJobPost(long id, JobPost jobPost)
         {
@@ -96,7 +96,7 @@ namespace JobPlsApi.Controllers
         }
 
         // DELETE: api/JobPost/5
-        [Authorize(Role.Recruiter)]
+        // [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteJobPost(long id)
         {

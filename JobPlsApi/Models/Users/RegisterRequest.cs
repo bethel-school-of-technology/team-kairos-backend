@@ -11,11 +11,14 @@ public class RegisterRequest
     [Required]
     public string LastName { get; set; }
 
-    [Required]
+    // [Required]
     public string Username { get; set; }
 
-    [Required]
+    // [Required]
     public Role Role { get; set; }
+      
+    [Required]
+    public string Email { get; set; }
 
     [Required]
     public string Password { get; set; }

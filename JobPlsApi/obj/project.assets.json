@@ -10257,19 +10257,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/mariogonzales/.nuget/packages/": {}
+    "C:\\Users\\tgavr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mariogonzales/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
+      "projectUniqueName": "C:\\Users\\tgavr\\Desktop\\team-kairos-backend\\JobPlsApi\\JobPlsApi.csproj",
       "projectName": "JobPlsApi",
-      "projectPath": "/Users/mariogonzales/Desktop/team-kairos-backend/JobPlsApi/JobPlsApi.csproj",
-      "packagesPath": "/Users/mariogonzales/.nuget/packages/",
-      "outputPath": "/Users/mariogonzales/Desktop/team-kairos-backend/JobPlsApi/obj/",
+      "projectPath": "C:\\Users\\tgavr\\Desktop\\team-kairos-backend\\JobPlsApi\\JobPlsApi.csproj",
+      "packagesPath": "C:\\Users\\tgavr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tgavr\\Desktop\\team-kairos-backend\\JobPlsApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mariogonzales/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\tgavr\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -10360,7 +10360,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -2,39 +2,32 @@
 
 #nullable disable
 
-namespace WebApi.Migrations.firstMigrations
+namespace WebApi.Migrations.secondMigrations
 {
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Recruiter",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Organization = table.Column<string>(type: "TEXT", nullable: true),
-                    jobTitle = table.Column<string>(type: "TEXT", nullable: true),
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
                     Username = table.Column<string>(type: "TEXT", nullable: true),
                     Password = table.Column<string>(type: "TEXT", nullable: true),
-                    userId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Role = table.Column<int>(type: "INTEGER", nullable: false),
                     IsRecruiter = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recruiter", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Recruiter_Recruiter_userId",
-                        column: x => x.userId,
-                        principalTable: "Recruiter",
-                        principalColumn: "Id");
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobPosts",
+                name: "JobPost",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -50,32 +43,27 @@ namespace WebApi.Migrations.firstMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobPosts", x => x.Id);
+                    table.PrimaryKey("PK_JobPost", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_JobPosts_Recruiter_userId",
+                        name: "FK_JobPost_Users_userId",
                         column: x => x.userId,
-                        principalTable: "Recruiter",
+                        principalTable: "Users",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobPosts_userId",
-                table: "JobPosts",
-                column: "userId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Recruiter_userId",
-                table: "Recruiter",
+                name: "IX_JobPost_userId",
+                table: "JobPost",
                 column: "userId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "JobPosts");
+                name: "JobPost");
 
             migrationBuilder.DropTable(
-                name: "Recruiter");
+                name: "Users");
         }
     }
 }

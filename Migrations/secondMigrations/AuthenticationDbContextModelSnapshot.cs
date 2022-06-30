@@ -23,10 +23,6 @@ namespace WebApi.Migrations.secondMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
@@ -39,19 +35,15 @@ namespace WebApi.Migrations.secondMigrations
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Username")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("userId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
-
                     b.ToTable("Users", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
             modelBuilder.Entity("WebApi.Models.JobPost", b =>
@@ -91,38 +83,16 @@ namespace WebApi.Migrations.secondMigrations
                     b.ToTable("JobPost");
                 });
 
-            modelBuilder.Entity("WebApi.Models.Recruiter", b =>
-                {
-                    b.HasBaseType("WebApi.Entities.User");
-
-                    b.Property<string>("Organization")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("jobTitle")
-                        .HasColumnType("TEXT");
-
-                    b.HasDiscriminator().HasValue("Recruiter");
-                });
-
-            modelBuilder.Entity("WebApi.Entities.User", b =>
-                {
-                    b.HasOne("WebApi.Models.Recruiter", "user")
-                        .WithMany()
-                        .HasForeignKey("userId");
-
-                    b.Navigation("user");
-                });
-
             modelBuilder.Entity("WebApi.Models.JobPost", b =>
                 {
-                    b.HasOne("WebApi.Models.Recruiter", "user")
+                    b.HasOne("WebApi.Entities.User", "user")
                         .WithMany("JobPosts")
                         .HasForeignKey("userId");
 
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("WebApi.Models.Recruiter", b =>
+            modelBuilder.Entity("WebApi.Entities.User", b =>
                 {
                     b.Navigation("JobPosts");
                 });

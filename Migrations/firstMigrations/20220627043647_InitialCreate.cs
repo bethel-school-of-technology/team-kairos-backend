@@ -2,14 +2,14 @@
 
 #nullable disable
 
-namespace WebApi.Migrations.secondMigrations
+namespace WebApi.Migrations.firstMigrations
 {
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -18,24 +18,16 @@ namespace WebApi.Migrations.secondMigrations
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
                     Username = table.Column<string>(type: "TEXT", nullable: true),
                     Password = table.Column<string>(type: "TEXT", nullable: true),
-                    userId = table.Column<int>(type: "INTEGER", nullable: true),
-                    IsRecruiter = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
-                    Organization = table.Column<string>(type: "TEXT", nullable: true),
-                    jobTitle = table.Column<string>(type: "TEXT", nullable: true)
+                    Role = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsRecruiter = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Users_userId",
-                        column: x => x.userId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobPost",
+                name: "JobPosts",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -51,32 +43,27 @@ namespace WebApi.Migrations.secondMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobPost", x => x.Id);
+                    table.PrimaryKey("PK_JobPosts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_JobPost_Users_userId",
+                        name: "FK_JobPosts_User_userId",
                         column: x => x.userId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobPost_userId",
-                table: "JobPost",
-                column: "userId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_userId",
-                table: "Users",
+                name: "IX_JobPosts_userId",
+                table: "JobPosts",
                 column: "userId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "JobPost");
+                name: "JobPosts");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }

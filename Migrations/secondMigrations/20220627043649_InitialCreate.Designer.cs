@@ -2,17 +2,19 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApi.Data;
+using WebApi.Models;
 
 #nullable disable
 
-namespace WebApi.Migrations.firstMigrations
+namespace WebApi.Migrations.secondMigrations
 {
-    [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AuthenticationDbContext))]
+    [Migration("20220627043649_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
@@ -43,7 +45,7 @@ namespace WebApi.Migrations.firstMigrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("WebApi.Models.JobPost", b =>
@@ -80,7 +82,7 @@ namespace WebApi.Migrations.firstMigrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("JobPosts");
+                    b.ToTable("JobPost");
                 });
 
             modelBuilder.Entity("WebApi.Models.JobPost", b =>

@@ -6,7 +6,7 @@ using WebApi.Services;
 using WebApi.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-
+using WebApi.Authorization;
 
 [ApiController]
 [Route("[controller]")]
@@ -51,26 +51,31 @@ public class UsersController : ControllerBase
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-    [HttpPost("authenticate")]
-    public async Task<IActionResult> Authenticate([FromBody] User AuthUser, [FromRoute] AuthenticateRequest model)
+ [AllowAnonymous]
+    [HttpPost("[action]")]
+    public IActionResult Authenticate(AuthenticateRequest model)
     {
-        var response = _userService.Authenticate(AuthUser, model);
-
-        if (response == null)
-            return null;
-
-        _context.User.Add(AuthUser);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetAll", new { id = AuthUser.Id }, AuthUser);
+        var response = _userService.Authenticate(model);
+        return Ok(response);
     }
 
-    [Authorize]
+    [Authorize(Role.Admin)]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetAll()
+    public IActionResult GetAll()
     {
-        var users = await _context.User.ToListAsync();
-        // _userService.GetAll();
-        // return Ok(users);
-        return users;
+        var users = _userService.GetAll();
+        return Ok(users);
+    }
+
+[HttpGet("{id:int}")]
+    public IActionResult GetById(int id)
+    {
+        // only admins can access other user records
+        var currentUser = (User)HttpContext.Items["User"];
+        if (id != currentUser.Id && currentUser.Role != Role.Admin)
+            return Unauthorized(new { message = "Unauthorized" });
+
+        var user =  _userService.GetById(id);
+        return Ok(user);
     }
 }

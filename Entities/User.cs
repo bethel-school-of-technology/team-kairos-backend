@@ -11,7 +11,9 @@ public class User
 
     [JsonIgnore]
     public string Password { get; set; }
-    public Recruiter user {get; set;}
+    public Role Role { get; set; }
+
+    public IEnumerable<JobPost> JobPosts {get; set; }
 
     public bool IsRecruiter {get; set;}
 

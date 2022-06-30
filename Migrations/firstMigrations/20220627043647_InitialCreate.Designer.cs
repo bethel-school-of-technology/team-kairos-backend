@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApi.Models;
+using WebApi.Data;
 
 #nullable disable
 
-namespace WebApi.Migrations.secondMigrations
+namespace WebApi.Migrations.firstMigrations
 {
-    [DbContext(typeof(AuthenticationDbContext))]
-    [Migration("20220622040949_InitialCreate")]
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20220627043647_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,10 +25,6 @@ namespace WebApi.Migrations.secondMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
@@ -41,19 +37,15 @@ namespace WebApi.Migrations.secondMigrations
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Username")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("userId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
-
-                    b.ToTable("Users", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("WebApi.Models.JobPost", b =>
@@ -90,41 +82,19 @@ namespace WebApi.Migrations.secondMigrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("JobPost");
-                });
-
-            modelBuilder.Entity("WebApi.Models.Recruiter", b =>
-                {
-                    b.HasBaseType("WebApi.Entities.User");
-
-                    b.Property<string>("Organization")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("jobTitle")
-                        .HasColumnType("TEXT");
-
-                    b.HasDiscriminator().HasValue("Recruiter");
-                });
-
-            modelBuilder.Entity("WebApi.Entities.User", b =>
-                {
-                    b.HasOne("WebApi.Models.Recruiter", "user")
-                        .WithMany()
-                        .HasForeignKey("userId");
-
-                    b.Navigation("user");
+                    b.ToTable("JobPosts");
                 });
 
             modelBuilder.Entity("WebApi.Models.JobPost", b =>
                 {
-                    b.HasOne("WebApi.Models.Recruiter", "user")
+                    b.HasOne("WebApi.Entities.User", "user")
                         .WithMany("JobPosts")
                         .HasForeignKey("userId");
 
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("WebApi.Models.Recruiter", b =>
+            modelBuilder.Entity("WebApi.Entities.User", b =>
                 {
                     b.Navigation("JobPosts");
                 });

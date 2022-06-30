@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebApi.Entities;
 
 namespace WebApi.Models
 {
@@ -13,6 +14,8 @@ namespace WebApi.Models
         public string URLToJobApp { get; set; }
         public long MinPayRange { get; set; }
         public long? MaxPayRange { get; set; }
-        public Recruiter? user {get; set;}
+
+        public User user {get; set;}
+       }
     }
-}
+

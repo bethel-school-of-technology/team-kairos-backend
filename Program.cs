@@ -4,6 +4,10 @@ using WebApi.Models;
 using WebApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using BCryptNet = BCrypt.Net.BCrypt;
+using System.Text.Json.Serialization;
+using WebApi.Authorization;
+using WebApi.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,18 +2,14 @@ namespace WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using WebApi.Authorization;using BCrypt.Net;
 using WebApi.Entities;
 using WebApi.Helpers;
 using WebApi.Models;
 using System.Linq;
-using WebApi.Authorization;
 public interface IUserService
 {
-    Task<AuthenticateResponse> Authenticate(User AuthUser, AuthenticateRequest model);
+    AuthenticateResponse Authenticate( AuthenticateRequest model);
     Task<ActionResult<IEnumerable<User>>> GetAll();
     User GetById(int id);
 }
@@ -37,15 +33,14 @@ public class UserService : IUserService
         _appSettings = appSettings.Value;
     }
 
-    public async Task<AuthenticateResponse> Authenticate(User AuthUser, AuthenticateRequest model)
-        {
-            
-        if (_context.User == null)
-          {
-              return null;
-          }
-            var user = await _context.User.FindAsync(AuthUser.Id);
+    
+         public AuthenticateResponse Authenticate(AuthenticateRequest model)
+    {
+        var user = _context.User.SingleOrDefault(x => x.Username == model.Username);
 
+        // validate
+        if (user == null || !BCrypt.Verify(model.Password, user.Password))
+            throw new AppException("Username or password is incorrect");
 
         // authentication successful so generate jwt token
         var jwtToken = _jwtUtils.GenerateJwtToken(user);
@@ -63,7 +58,7 @@ public class UserService : IUserService
 
     public User GetById(int id)
     {
-        return _users.FirstOrDefault(x => x.Id == id);
+        return _context.User.FirstOrDefault(x => x.Id == id);
     }
 
     // helper methods
